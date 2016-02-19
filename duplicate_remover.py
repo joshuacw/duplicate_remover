@@ -44,7 +44,8 @@ for point in first_image_points:
 
 # 5. open second image
 second_image = \
-    Image.open('/Users/shua387/Desktop/test_folder/test_image_copy.jpg')
+    Image.open(\
+    '/Users/shua387/Desktop/test_folder/test_image_copy.jpg')
 
 # 6. Get/check dimensions
 width_second, height_second = second_image.size
@@ -67,7 +68,9 @@ def identical_rgb(rgb_values1, rgb_values2):
 
 # 9. remove second image if identical
 if identical_rgb(first_rgb_values, second_rgb_values):
-    shutil.move('/Users/shua387/Desktop/test_folder/test_image_copy.jpg', '/Users/shua387/.Trash')
+    shutil.move(\
+    '/Users/shua387/Desktop/test_folder/test_image_copy.jpg',\
+    '/Users/shua387/.Trash')
 
 first_image.close()
 second_image.close()
