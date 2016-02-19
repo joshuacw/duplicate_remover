@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os
+import shutil
 from PIL import Image
 from random import randint
 
@@ -57,10 +57,17 @@ if width_second == width_first and height_second == height_first:
         second_rgb_values.append(second_image.getpixel(point))
 
 # 8. check to see if r,g,b values match between images
-for i in range(1, 10):
-    if first_rgb_values[i] == second_rgb_values[i]:
-        # 9. Remove second image
-        os.remove('/Users/shua387/Desktop/test_folder/test_image_copy.jpg')
+def identical_rgb(rgb_values1, rgb_values2):
+    identical = True
+    for i in range(len(rgb_values1)):
+        if rgb_values1 != rgb_values2:
+            identical = False
+        break
+    return identical
+
+# 9. remove second image if identical
+if identical_rgb(first_rgb_values, second_rgb_values):
+    shutil.move('/Users/shua387/Desktop/test_folder/test_image_copy.jpg', '/Users/shua387/.Trash')
 
 first_image.close()
 second_image.close()
