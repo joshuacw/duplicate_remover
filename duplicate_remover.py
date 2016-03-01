@@ -59,17 +59,9 @@ second_image_points = []
 def n_times_tuple(n, tup):
     return tuple([n*i for i in tup])
 
+# 7. get points at "proportionalized" points
 for point in first_image_points:
     second_image_points.append(n_times_tuple((float(width_second) / float(width_first)), point))
-
-def iround(x):
-    '''round a number to nearest integer'''
-    y = round(x) - .5
-    return int(y) + (y > 0)
-
-for point in second_image_points:
-    for i in point:
-        i = iround(i)
 
 second_rgb_values = []
 
@@ -77,7 +69,8 @@ if width_second == width_first and height_second == height_first:
     # get r,g,b values at generated points and store in list
     for point in first_image_points:
         second_rgb_values.append(second_image.getpixel(point))
-elif height_second / int(width_second) == height_first / int(width_first):
+elif height_second / int(width_second) == height_first / int(width_first): 
+    # get r,g,b values at generated points and store in list
     for point in second_image_points:
         second_rgb_values.append(second_image.getpixel(point))
 
