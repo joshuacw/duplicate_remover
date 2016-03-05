@@ -21,11 +21,13 @@ width_first, height_first = first_image.size
 
 first_image_points = []
 
-# 3. generate N (= 10) random points within the image
-for i in range(1, 101):
+# 3. generate N (= 1000) random points within the image
+for i in range(1, 1001):
     # generate a random point dimension within image
-    rand_width_pixel = randint(0, width_first)
-    rand_height_pixel = randint(0, height_first)
+    rand_width_pixel = randint(0, width_first - 1) 
+    # script doesn't like right edge for some reason
+    rand_height_pixel = randint(0, height_first - 1) 
+    # nor the bottom edge
 
     first_image_points.append((rand_width_pixel, rand_height_pixel))
 
@@ -34,9 +36,9 @@ first_rgb_values = []
 # 4. get r,g,b values at generated random points and store in list
 for point in first_image_points:
     # get r,g,b values at random pixel dimension
-    first_rgb_values.append(first_image.getpixel(point))
-
-'''Sometimes get 'IndexError: image index out of range' from line 37'''
+    first_rgb_values.append(first_image.getpixel(point)) 
+            
+'''Sometimes the script completes w/o deleting the image.'''
 
 '''
 5. Open second image
@@ -93,7 +95,7 @@ def identical_rgb(rgb_values1, rgb_values2):
     return counter
 
 # 9. remove second image if identical
-if identical_rgb(first_rgb_values, second_rgb_values) > 90:
+if identical_rgb(first_rgb_values, second_rgb_values) >= 950:
     shutil.move(\
     '/Users/shua387/Desktop/test_folder/test_image_rect_sm.jpg',\
     '/Users/shua387/.Trash')
