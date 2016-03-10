@@ -62,7 +62,8 @@ def n_times_tuple(n, tup):
 
 # 7. get points at "proportionalized" points
 for point in first_image_points:
-    second_image_points.append(n_times_tuple((float(width_second) / float(width_first)), point))
+    proportional_point = n_times_tuple((float(width_second) / float(width_first)), point)
+    second_image_points.append(proportional_point)
 
 second_rgb_values = []
 
