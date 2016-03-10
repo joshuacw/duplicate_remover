@@ -83,8 +83,6 @@ def identical_rgb(rgb_values1, rgb_values2):
             counter += 1 
     return counter
 
-print identical_rgb(first_rgb_values, second_rgb_values)
-
 # 9. remove second image if identical
 if identical_rgb(first_rgb_values, second_rgb_values) >= 9250:
     shutil.move(\
