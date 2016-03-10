@@ -21,11 +21,11 @@ width_first, height_first = first_image.size
 
 first_image_points = []
 
-# 3. generate N (= 1000) random points within the image
-for i in range(1, 1001):
+# 3. generate N (= 10,000) random points within the image
+for i in range(1, 10001):
     # generate a random point dimension within image
     rand_width_pixel = randint(0, width_first - 1) 
-    # script doesn't like right edge for some reason
+    # script doesn't like right edge of pixels for some reason
     rand_height_pixel = randint(0, height_first - 1) 
     # nor the bottom edge
 
@@ -38,7 +38,6 @@ for point in first_image_points:
     # get r,g,b values at random pixel dimension
     first_rgb_values.append(first_image.getpixel(point)) 
             
-'''Sometimes the script completes w/o deleting the image.'''
 
 '''
 5. Open second image
@@ -76,16 +75,6 @@ elif height_second / int(width_second) == height_first / int(width_first):
     for point in second_image_points:
         second_rgb_values.append(second_image.getpixel(point))
 
-'''
-# 8. check to see if r,g,b values match between images
-def identical_rgb(rgb_values1, rgb_values2):
-    identical = True
-    for i in range(len(rgb_values1) + 1):
-        if rgb_values1 != rgb_values2:
-            identical = False
-        break
-    return identical
-'''
 # 8. check to see if r,g,b values (mostly) match between images
 def identical_rgb(rgb_values1, rgb_values2):
     counter = 0
@@ -94,8 +83,10 @@ def identical_rgb(rgb_values1, rgb_values2):
             counter += 1 
     return counter
 
+print identical_rgb(first_rgb_values, second_rgb_values)
+
 # 9. remove second image if identical
-if identical_rgb(first_rgb_values, second_rgb_values) >= 950:
+if identical_rgb(first_rgb_values, second_rgb_values) >= 9250:
     shutil.move(\
     '/Users/shua387/Desktop/test_folder/test_image_rect_sm.jpg',\
     '/Users/shua387/.Trash')
